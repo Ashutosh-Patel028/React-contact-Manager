@@ -23,10 +23,17 @@ function App() {
     localStorage.setItem(key,JSON.stringify(contacts));
   },[contacts]);
 
+const removeContact = (id) =>{
+  const newcontacts = contacts.filter((contact)=>{
+    return contact.id !== id;
+  })
+  setContact(newcontacts);
+}
+
   return (<>
     <Header/>
     <AddContact handleContact={addContact}/>
-    <ContactList contacts={contacts}/> 
+    <ContactList contacts={contacts} getContactId={removeContact}/> 
     </>
   );
 }
